@@ -146,13 +146,7 @@
                                 class="group relative bg-white rounded-3xl p-4 transition-all duration-700 hover:shadow-2xl hover:-translate-y-3 border border-slate-100 animate-up">
                                 <div
                                     class="relative overflow-hidden rounded-[1.5rem] aspect-[9/11] mb-6 border border-slate-100 bg-slate-50">
-                                    <?php
-                                    $display_image = 'placeholder.jpg';
-                                    if (!empty($product->image) && file_exists(APPROOT . '/../public/img/products/' . $product->image)) {
-                                        $display_image = $product->image;
-                                    }
-                                    ?>
-                                    <img src="<?php echo URLROOT; ?>/img/products/<?php echo $display_image; ?>"
+                                    <img src="<?php echo getProductImage($product->image); ?>"
                                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-[1.5s]"
                                         alt="<?php echo $product->name; ?>" loading="lazy">
 

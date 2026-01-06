@@ -31,7 +31,7 @@
                             id="cart-item-<?php echo $id; ?>">
                             <div
                                 class="w-24 h-24 md:w-32 md:h-32 rounded-2xl overflow-hidden flex-shrink-0 bg-slate-100 border border-slate-100">
-                                <img src="<?php echo URLROOT; ?>/img/products/<?php echo $item['image'] ?: 'default.jpg'; ?>"
+                                <img src="<?php echo getProductImage($item['image']); ?>"
                                     alt="<?php echo $item['name'] ?>"
                                     class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                                     onerror="this.src='https://images.unsplash.com/photo-1519340241574-2dec49daa043?q=80&w=200&h=200&auto=format&fit=crop'">

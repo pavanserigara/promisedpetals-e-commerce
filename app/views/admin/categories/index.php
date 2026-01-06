@@ -46,7 +46,7 @@
                                 <td class="px-8 py-6">
                                     <div
                                         class="w-16 h-16 rounded-2xl overflow-hidden bg-slate-50 border border-slate-100 flex-shrink-0">
-                                        <img src="<?php echo URLROOT; ?>/img/categories/<?php echo $category->image ?: 'default.jpg'; ?>"
+                                        <img src="<?php echo getCategoryImage($category->image); ?>"
                                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                                             onerror="this.src='https://images.unsplash.com/photo-1490750967868-886a502c4482?q=80&w=150&h=150&auto=format&fit=crop'">
                                     </div>
@@ -54,7 +54,8 @@
                                 <td class="px-8 py-6">
                                     <h4
                                         class="font-bold text-slate-800 text-sm group-hover:text-brand-600 transition-colors">
-                                        <?php echo $category->name; ?></h4>
+                                        <?php echo $category->name; ?>
+                                    </h4>
                                 </td>
                                 <td class="px-8 py-6">
                                     <code

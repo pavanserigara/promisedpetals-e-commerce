@@ -77,8 +77,8 @@
                     <div class="flex items-center gap-4 mt-2">
                         <?php if ($data['product']->image): ?>
                             <div class="flex-shrink-0">
-                                <img src="<?php echo URLROOT; ?>/img/products/<?php echo $data['product']->image; ?>"
-                                    alt="Current Image" class="h-20 w-20 object-cover rounded-lg border border-gray-200">
+                                <img src="<?php echo getProductImage($data['product']->image); ?>" alt="Current Image"
+                                    class="h-20 w-20 object-cover rounded-lg border border-gray-200">
                                 <p class="text-xs text-center text-gray-500 mt-1">Current</p>
                             </div>
                         <?php endif; ?>

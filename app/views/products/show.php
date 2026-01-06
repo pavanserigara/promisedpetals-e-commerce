@@ -30,13 +30,7 @@
         <!-- Image Section -->
         <div class="mb-12 lg:mb-0 animate-up">
             <div class="relative group rounded-[2.5rem] overflow-hidden shadow-2xl bg-slate-50 border border-slate-100">
-                <?php
-                $display_image = 'placeholder.jpg';
-                if (!empty($data['product']->image) && file_exists(APPROOT . '/../public/img/products/' . $data['product']->image)) {
-                    $display_image = $data['product']->image;
-                }
-                ?>
-                <img src="<?php echo URLROOT; ?>/img/products/<?php echo $display_image; ?>"
+                <img src="<?php echo getProductImage($data['product']->image); ?>"
                     alt="<?php echo $data['product']->name; ?>"
                     class="w-full aspect-[4/5] object-cover transition-transform duration-[2s] group-hover:scale-110">
 
@@ -54,7 +48,7 @@
             <!-- Thumbnails (Small Preview) -->
             <div class="mt-8 grid grid-cols-4 gap-4">
                 <div class="aspect-square rounded-2xl overflow-hidden border-2 border-brand-500">
-                    <img src="<?php echo URLROOT; ?>/img/products/<?php echo $display_image; ?>"
+                    <img src="<?php echo getProductImage($data['product']->image); ?>"
                         class="w-full h-full object-cover">
                 </div>
             </div>

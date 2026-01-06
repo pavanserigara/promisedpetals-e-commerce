@@ -75,13 +75,7 @@
                                     <div class="flex items-center gap-4">
                                         <div
                                             class="w-14 h-14 rounded-2xl overflow-hidden bg-slate-50 border border-slate-100 flex-shrink-0">
-                                            <?php
-                                            $display_image = 'placeholder.jpg';
-                                            if (!empty($product->image) && file_exists(APPROOT . '/../public/img/products/' . $product->image)) {
-                                                $display_image = $product->image;
-                                            }
-                                            ?>
-                                            <img src="<?php echo URLROOT; ?>/img/products/<?php echo $display_image; ?>"
+                                            <img src="<?php echo getProductImage($product->image); ?>"
                                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
                                         </div>
                                         <div>

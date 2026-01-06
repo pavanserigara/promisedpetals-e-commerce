@@ -145,7 +145,7 @@
                             <div class="flex items-center gap-4">
                                 <div
                                     class="w-16 h-16 rounded-xl overflow-hidden flex-shrink-0 bg-slate-50 border border-slate-100">
-                                    <img src="<?php echo URLROOT; ?>/img/products/<?php echo $item['image'] ?: 'default.jpg'; ?>"
+                                    <img src="<?php echo getProductImage($item['image']); ?>"
                                         class="w-full h-full object-cover">
                                 </div>
                                 <div class="flex-1 min-w-0">

@@ -80,7 +80,7 @@
                 class="flex-shrink-0 flex flex-col items-center group">
                 <div
                     class="w-16 h-16 md:w-24 md:h-24 rounded-full overflow-hidden border-2 border-brand-100 group-hover:border-brand-500 transition-all duration-500 transform group-hover:scale-110 shadow-sm group-hover:shadow-lg">
-                    <img src="<?php echo URLROOT; ?>/img/categories/<?php echo $category->image ?: 'default.jpg'; ?>"
+                    <img src="<?php echo getCategoryImage($category->image); ?>"
                         class="w-full h-full object-cover group-hover:scale-125 transition-transform duration-700"
                         alt="<?php echo $category->name; ?>" loading="lazy"
                         onerror="this.src='https://images.unsplash.com/photo-1526047932273-341f2a7631f9?q=80&w=200&h=200&auto=format&fit=crop'">
@@ -112,13 +112,7 @@
                     class="group relative bg-white rounded-3xl p-4 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 border border-slate-100/50">
                     <div
                         class="relative overflow-hidden rounded-2xl aspect-[9/11] mb-6 border border-slate-100 bg-slate-50">
-                        <?php
-                        $display_image = 'placeholder.jpg';
-                        if (!empty($product->image) && file_exists(APPROOT . '/../public/img/products/' . $product->image)) {
-                            $display_image = $product->image;
-                        }
-                        ?>
-                        <img src="<?php echo URLROOT; ?>/img/products/<?php echo $display_image; ?>"
+                        <img src="<?php echo getProductImage($product->image); ?>"
                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                             alt="<?php echo $product->name; ?>">
 
@@ -230,16 +224,11 @@
         <!-- Horizontal Scrollable Container -->
         <div class="overflow-x-auto no-scrollbar -mx-4 px-4">
             <div class="flex gap-6 pb-4">
-                <?php foreach ($data['featured_products'] as $product):
-                    $display_image = 'placeholder.jpg';
-                    if (!empty($product->image) && file_exists(APPROOT . '/../public/img/products/' . $product->image)) {
-                        $display_image = $product->image;
-                    }
-                    ?>
+                <?php foreach ($data['featured_products'] as $product): ?>
                     <div
                         class="flex-shrink-0 w-72 group relative bg-white rounded-3xl p-4 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 border border-slate-100/50">
                         <div class="relative overflow-hidden rounded-2xl aspect-[9/11] mb-6">
-                            <img src="<?php echo URLROOT; ?>/img/products/<?php echo $display_image; ?>"
+                            <img src="<?php echo getProductImage($product->image); ?>"
                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                                 alt="<?php echo $product->name; ?>">
                             <!-- Quick Add -->

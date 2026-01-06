@@ -35,8 +35,8 @@
                         <div>
                             <label class="block text-sm font-medium text-gray-700">Current Image</label>
                             <div class="mt-2">
-                                <img src="<?php echo URLROOT; ?>/img/<?php echo $data['category']->image; ?>"
-                                    alt="Current Image" class="h-32 w-32 object-cover rounded-md">
+                                <img src="<?php echo getCategoryImage($data['category']->image); ?>" alt="Current Image"
+                                    class="h-32 w-32 object-cover rounded-md">
                             </div>
                         </div>
                     <?php endif; ?>

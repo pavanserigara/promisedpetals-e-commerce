@@ -81,14 +81,8 @@
                         <?php foreach ($data['order']->items as $item): ?>
                             <li class="p-4 flex items-center">
                                 <div class="flex-shrink-0 h-16 w-16 bg-gray-100 rounded-md overflow-hidden">
-                                    <?php
-                                    $image_path = APPROOT . '/../public/img/products/' . ($item['product_image'] ?? '');
-                                    $image_url = URLROOT . '/img/products/' . ($item['product_image'] ?? '');
-                                    if (empty($item['product_image']) || !file_exists($image_path)) {
-                                        $image_url = URLROOT . '/img/placeholder.jpg';
-                                    }
-                                    ?>
-                                    <img src="<?php echo $image_url; ?>" alt="" class="h-full w-full object-cover">
+                                    <img src="<?php echo getProductImage($item['product_image'] ?? ''); ?>" alt=""
+                                        class="h-full w-full object-cover">
                                 </div>
                                 <div class="ml-4 flex-1">
                                     <div class="flex justify-between">
