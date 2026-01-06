@@ -61,18 +61,18 @@ class Database
         return $this->stmt->execute();
     }
 
-    // Get result set as array of objects
+    // Get result set as array of associative arrays
     public function resultSet()
     {
         $this->execute();
-        return $this->stmt->fetchAll(PDO::FETCH_OBJ);
+        return $this->stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    // Get single record as object
+    // Get single record as associative array
     public function single()
     {
         $this->execute();
-        return $this->stmt->fetch(PDO::FETCH_OBJ);
+        return $this->stmt->fetch(PDO::FETCH_ASSOC);
     }
 
     // Row count

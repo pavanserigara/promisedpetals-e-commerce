@@ -1,38 +1,46 @@
 <?php
-// router.php for PHP built-in server to simulate Apache .htaccess rewrites
+/**
+ * router.php for PHP built-in server
+ * Use: php -S localhost:8000 router.php
+ */
 
 $uri = urldecode(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
 
-// Check if file exists in public directory
-$publicFile = __DIR__ . '/public' . $uri;
+// Define public path
+$publicDir = __DIR__ . '/public';
+$filePath = $publicDir . $uri;
 
-if ($uri !== '/' && file_exists($publicFile) && !is_dir($publicFile)) {
-    // Serve static file from public
-    // We need to adjust SCRIPT_FILENAME to point to public
-    // But PHP built-in server with router script handles serving if we return false?
-    // No, if we return false, it serves the file from the startup directory.
-    // But our files are in public/.
-    // So we should just output the file or redirect?
-    // Simpler: Serve it.
+// If the file exists in public/, serve it
+if ($uri !== '/' && file_exists($filePath) && !is_dir($filePath)) {
+    $ext = pathinfo($filePath, PATHINFO_EXTENSION);
 
-    // Actually, simpler approach:
-    // User requested /css/style.css
-    // We want to serve public/css/style.css
-    // But we are running from root.
-    // If we run `php -S localhost:8000 -t public`, we don't need this mapping.
-    // But we need to handle rewrites.
+    // Basic Mime Types
+    $mimes = [
+        'css' => 'text/css',
+        'js' => 'application/javascript',
+        'png' => 'image/png',
+        'jpg' => 'image/jpeg',
+        'jpeg' => 'image/jpeg',
+        'gif' => 'image/gif',
+        'svg' => 'image/svg+xml',
+        'webp' => 'image/webp',
+        'pdf' => 'application/pdf',
+        'ico' => 'image/x-icon',
+    ];
 
-    return false; // This works if -t public is NOT used, but we are in root.
-    // Wait, if we run in root, and request /css/style.css, local file ./css/style.css does NOT exist. ./public/css/style.css exists.
-    // So we must serve it manually or chdir?
+    if (isset($mimes[$ext])) {
+        header('Content-Type: ' . $mimes[$ext]);
+    }
+
+    readfile($filePath);
+    return true;
 }
 
-// If we are here, it's a rewrite or the root.
-// Map to public/index.php
+// Routing for MVC
 $_GET['url'] = ltrim($uri, '/');
 if ($uri === '/')
     $_GET['url'] = '';
 
-// Needed for the app to find files relative to index.php
-chdir(__DIR__ . '/public');
-require_once __DIR__ . '/public/index.php';
+// Crucial: Set current directory to public so index.php paths work
+chdir($publicDir);
+require_once 'index.php';
