@@ -75,7 +75,7 @@ class Database
         return $this->stmt->fetch(PDO::FETCH_OBJ);
     }
 
-    // Get row count
+    // Row count
     public function rowCount()
     {
         return $this->stmt->rowCount();
@@ -85,6 +85,16 @@ class Database
     public function lastInsertId()
     {
         return $this->dbh->lastInsertId();
+    }
+
+    // Helper: Convert Associative Array to Object (Legacy Support for Models)
+    public function toObjects($array)
+    {
+        $objects = [];
+        foreach ($array as $key => $value) {
+            $objects[$key] = (object) $value;
+        }
+        return $objects;
     }
 
     /**
